@@ -40,7 +40,7 @@
 
     <!-- main part -->
     <xsl:template match="/export">
-        <xsl:text>Reference, Value, Footprint, Datasheet</xsl:text>
+        <xsl:text>Reference, Value, Footprint, Datasheet, </xsl:text>
 
             <!-- find all existing table head entries and list each one once -->
             <xsl:for-each select="components/comp/fields/field[generate-id(.) = generate-id(key('headentr',@name)[1])]">
@@ -60,7 +60,7 @@
         <xsl:value-of select="value"/><xsl:text>","</xsl:text>
         <xsl:value-of select="footprint"/><xsl:text>","</xsl:text>
         <xsl:value-of select="datasheet"/><xsl:text>","</xsl:text>
-        <xsl:apply-templates select="fields"/><xsl:text>","</xsl:text>
+        <xsl:apply-templates select="fields"/>
         <xsl:text>"&nl;</xsl:text>
     </xsl:template>
 
@@ -73,7 +73,7 @@
         <!-- for all existing head entries -->
         <xsl:for-each select="/export/components/comp/fields/field[generate-id(.) = generate-id(key('headentr',@name)[1])]">
             <xsl:variable name="allnames" select="@name"/>
-            <xsl:text>,</xsl:text>
+            <xsl:text>","</xsl:text>
 
             <!-- for all field entries in the remembered fields section -->
             <xsl:for-each select="$fieldvar">
